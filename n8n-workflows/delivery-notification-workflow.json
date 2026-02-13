@@ -1,0 +1,251 @@
+{
+  "name": "Laravel Delivery Notification System",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "minutes",
+              "minutesInterval": 5
+            }
+          ]
+        }
+      },
+      "id": "schedule-trigger",
+      "name": "Check System Status Every 5 Minutes",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1,
+      "position": [250, 300]
+    },
+    {
+      "parameters": {
+        "url": "http://app:80/api/system/status",
+        "options": {}
+      },
+      "id": "http-request-laravel",
+      "name": "Get Laravel System Status",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [500, 300]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.status }}",
+              "operation": "isEqual",
+              "value2": "critical"
+            }
+          ]
+        }
+      },
+      "id": "if-critical",
+      "name": "If System Critical",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [750, 300]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "number": [
+            {
+              "value1": "={{ $json.orders_today }}",
+              "operation": "greater",
+              "value2": 100
+            }
+          ]
+        }
+      },
+      "id": "if-high-orders",
+      "name": "If High Orders",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [750, 500]
+    },
+    {
+      "parameters": {
+        "text": "🚨 *CRITICAL ALERT!* 🚨\n\n*System Status:* {{ $json.status }}\n*Time:* {{ $json.timestamp }}\n*Error:* {{ $json.error_message }}\n\n🔗 Check dashboard immediately!",
+        "additionalFields": {}
+      },
+      "id": "telegram-critical",
+      "name": "Send Telegram Alert - Critical",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [1000, 150]
+    },
+    {
+      "parameters": {
+        "bodyType": "simple",
+        "caption": "🚨 *CRITICAL ALERT!* 🚨\n\n*System Status:* {{ $json.status }}\n*Time:* {{ $json.timestamp }}\n*Error:* {{ $json.error_message }}",
+        "number": "{{ $json.alert_phone }}"
+      },
+      "id": "whatsapp-critical",
+      "name": "Send WhatsApp Alert - Critical",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [1000, 300]
+    },
+    {
+      "parameters": {
+        "text": "📊 *Daily Order Report*\n\n✅ *Orders Today:* {{ $json.orders_today }}\n💰 *Revenue:* ${{ $json.revenue_today }}\n🚚 *Pending Deliveries:* {{ $json.pending_deliveries }}\n\n*Top Restaurant:* {{ $json.top_restaurant }}\n\nSent via Laravel Delivery Bot 🤖",
+        "additionalFields": {}
+      },
+      "id": "telegram-daily",
+      "name": "Send Telegram Daily Report",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [1000, 500]
+    },
+    {
+      "parameters": {
+        "bodyType": "simple",
+        "caption": "📊 *Daily Order Report*\n\n✅ *Orders Today:* {{ $json.orders_today }}\n💰 *Revenue:* ${{ $json.revenue_today }}\n🚚 *Pending Deliveries:* {{ $json.pending_deliveries }}",
+        "number": "{{ $json.report_phone }}"
+      },
+      "id": "whatsapp-daily",
+      "name": "Send WhatsApp Daily Report",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [1000, 700]
+    },
+    {
+      "parameters": {
+        "url": "http://app:80/api/orders/pending",
+        "options": {}
+      },
+      "id": "check-pending",
+      "name": "Check Pending Orders",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [500, 500]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "number": [
+            {
+              "value1": "={{ $json.data.length }}",
+              "operation": "greater",
+              "value2": 20
+            }
+          ]
+        }
+      },
+      "id": "if-many-pending",
+      "name": "If Many Pending Orders",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [750, 700]
+    },
+    {
+      "parameters": {
+        "text": "⚠️ *Pending Orders Alert*\n\nThere are {{ $json.data.length }} pending orders that need attention!\n\nPlease check the admin panel immediately.",
+        "additionalFields": {}
+      },
+      "id": "telegram-pending",
+      "name": "Telegram - Pending Orders Alert",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [1000, 900]
+    }
+  ],
+  "connections": {
+    "Check System Status Every 5 Minutes": {
+      "main": [
+        [
+          {
+            "node": "Get Laravel System Status",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Laravel System Status": {
+      "main": [
+        [
+          {
+            "node": "If System Critical",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Check Pending Orders",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If System Critical": {
+      "main": [
+        [
+          {
+            "node": "Send Telegram Alert - Critical",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Send WhatsApp Alert - Critical",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check Pending Orders": {
+      "main": [
+        [
+          {
+            "node": "If High Orders",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "If Many Pending Orders",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If High Orders": {
+      "main": [
+        [
+          {
+            "node": "Send Telegram Daily Report",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Send WhatsApp Daily Report",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If Many Pending Orders": {
+      "main": [
+        [
+          {
+            "node": "Telegram - Pending Orders Alert",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-01-15T10:00:00.000Z",
+  "versionId": "1"
+}

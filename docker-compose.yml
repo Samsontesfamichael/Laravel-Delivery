@@ -1,0 +1,147 @@
+version: '3.8'
+
+services:
+  # ==================== LARAVEL APPLICATION ====================
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: laravel_delivery_app
+    restart: unless-stopped
+    working_dir: /var/www
+    volumes:
+      - ./:/var/www
+      - ./docker/php/local.ini:/usr/local/etc/php/conf.d/local.ini
+    depends_on:
+      - redis
+      - queue
+    networks:
+      - laravel-network
+    environment:
+      - APP_ENV=local
+      - APP_DEBUG=true
+
+  # ==================== WEB SERVER (NGINX) ====================
+  nginx:
+    image: nginx:alpine
+    container_name: laravel_delivery_nginx
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./:/var/www
+      - ./docker/nginx/conf.d:/etc/nginx/conf.d
+    depends_on:
+      - app
+    networks:
+      - laravel-network
+
+  # ==================== DATABASE (MYSQL) ====================
+  mysql:
+    image: mysql:8.0
+    container_name: laravel_delivery_mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: laravel_delivery
+      MYSQL_USER: laravel_user
+      MYSQL_PASSWORD: laravel_password
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+    networks:
+      - laravel-network
+
+  # ==================== REDIS ====================
+  redis:
+    image: redis:alpine
+    container_name: laravel_delivery_redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    networks:
+      - laravel-network
+
+  # ==================== QUEUE WORKER ====================
+  queue:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: laravel_delivery_queue
+    restart: unless-stopped
+    command: php artisan queue:work --sleep=3 --tries=3 --max-time=3600
+    volumes:
+      - ./:/var/www
+    depends_on:
+      - redis
+      - mysql
+    networks:
+      - laravel-network
+
+  # ==================== SCHEDULER ====================
+  scheduler:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: laravel_delivery_scheduler
+    restart: unless-stopped
+    command: >
+      sh -c "while true; do php artisan schedule:run --verbose --no-interaction; sleep 60; done"
+    volumes:
+      - ./:/var/www
+    depends_on:
+      - mysql
+      - redis
+    networks:
+      - laravel-network
+
+  # ==================== N8N AUTOMATION ====================
+  n8n:
+    image: n8nio/n8n:latest
+    container_name: laravel_delivery_n8n
+    restart: unless-stopped
+    ports:
+      - "5678:5678"
+    environment:
+      - N8N_BASIC_AUTH_ACTIVE=true
+      - N8N_BASIC_AUTH_USER=admin
+      - N8N_BASIC_AUTH_PASSWORD=admin123
+      - N8N_HOST=localhost
+      - N8N_PORT=5678
+      - N8N_PROTOCOL=http
+      - WEBHOOK_URL=http://localhost:5678
+      - GENERIC_TIMEZONE=Africa/Nairobi
+    volumes:
+      - n8n-data:/home/node/.n8n
+    networks:
+      - laravel-network
+
+  # ==================== WHATSAPP NOTIFICATION (VENOM) ====================
+  venom:
+    image: venombot/venom:latest
+    container_name: laravel_delivery_venom
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      - SERVER_TYPE=http
+      - SERVER_PORT=3000
+      - AUTHENTICATION_APIKEY=your_api_key_here
+    volumes:
+      - venom-data:/usr/src/app/instance
+    networks:
+      - laravel-network
+
+networks:
+  laravel-network:
+    driver: bridge
+
+volumes:
+  mysql-data:
+  redis-data:
+  n8n-data:
+  venom-data:

@@ -10,155 +10,117 @@
 
 ---
 
+## 🐳 Docker & Monitoring Setup
+
+### Quick Start with Docker
+
+```bash
+# Clone and setup
+git clone https://github.com/Samsontesfamichael/Laravel-Delivery.git
+cd Laravel-Delivery
+
+# Copy environment file
+cp .env.docker .env
+
+# Start all services
+docker-compose up -d
+```
+
+### Services Running:
+
+| Service | URL | Description |
+|---------|-----|-------------|
+| 🖥️ **Laravel App** | http://localhost | Main application |
+| 🐬 **MySQL** | localhost:3306 | Database |
+| 🔴 **Redis** | localhost:6379 | Cache & Queue |
+| 📊 **N8N** | http://localhost:5678 | Automation & Webhooks |
+| 💬 **Venom (WhatsApp)** | http://localhost:3000 | WhatsApp notifications |
+
+---
+
+## 🔔 N8N Monitoring & Notifications
+
+### Automated Alerts to WhatsApp & Telegram
+
+The system includes n8n workflow automation that monitors your delivery platform and sends real-time notifications.
+
+### Features:
+
+- ✅ **System Health Monitoring** - Checks database, cache, storage every 5 minutes
+- ✅ **Order Alerts** - Notifies when orders exceed threshold
+- ✅ **Pending Order Warnings** - Alerts when pending orders pile up
+- ✅ **Daily Reports** - Automated daily summary to WhatsApp/Telegram
+- ✅ **Critical Alerts** - Immediate notification for system failures
+
+### API Endpoints for Monitoring:
+
+```
+GET /api/system/status     - Get system status for n8n
+GET /api/system/health     - Health check endpoint
+GET /api/orders/pending    - Get pending orders
+GET /api/orders/today      - Today's orders
+GET /api/orders/stats      - Order statistics
+
+POST /api/notify/telegram  - Send Telegram message
+POST /api/notify/whatsapp  - Send WhatsApp message
+```
+
+---
+
 ## 🎨 Design Concept
 
-Our Admin Panel features a **modern, clean, and intuitive interface** with:
-
-- 🎯 **Clean Dashboard** - At-a-glance metrics with colorful charts
-- 📱 **Responsive Design** - Works on desktop, tablet, and mobile
-- 🎨 **Color Scheme**:
-  - Primary: `#FF6B35` (Vibrant Orange)
-  - Secondary: `#2E4057` (Dark Blue)
-  - Accent: `#1ABC9C` (Teal)
-  - Success: `#27AE60` (Green)
-  - Warning: `#F39C12` (Amber)
-  - Background: `#F8F9FA` (Light Gray)
-
----
-
-## 🚀 Features Overview
-
-### 👥 User Management
-| Feature | Icon | Description |
-|---------|------|-------------|
-| **Users** | 👥 | Manage registered customers, view profiles, track activity |
-| **User Profile Settings** | ⚙️ | Allow users to update personal information, preferences |
-| **Social Authentication** | 🔐 | Login via Google, Facebook, and other social platforms |
-
-### 🍔 Restaurant Management
-| Feature | Icon | Description |
-|---------|------|-------------|
-| **Restaurants** | 🏪 | Full CRUD operations for restaurant partners |
-| **Restaurant Filters** | 🔍 | Search and filter restaurants by cuisine, location, rating |
-| **Active/Inactive Restaurants** | ✅❌ | Manage restaurant approval status |
-| **New Restaurant** | ➕ | New restaurant onboarding process |
-| **Restaurant Payouts** | 💰 | Manage payment settlements for restaurants |
-
-### 🍕 Food Management
-| Feature | Icon | Description |
-|---------|------|-------------|
-| **Food Category List** | 📂 | Organize food items into categories |
-| **Food List** | 🍔 | Manage menu items with detailed information, pricing |
-
-### 📦 Order Management
-| Feature | Icon | Description |
-|---------|------|-------------|
-| **Orders** | 📋 | Track and manage all delivery orders |
-| **Order Reviews** | ⭐ | Review and process customer orders |
-| **Order Transactions** | 💳 | View detailed transaction history |
-
-### 💳 Financial Management
-| Feature | Icon | Description |
-|---------|------|-------------|
-| **Coupons** | 🎟️ | View and manage discount coupons |
-| **Create Coupon** | ✨ | Generate new promotional codes |
-| **Payments List** | 💵 | View all transaction records |
-| **Currencies** | 💱 | Multi-currency support |
-| **Wallet** | 👜 | User wallet and balance tracking |
-
-### 🚗 Delivery Management
-| Feature | Icon | Description |
-|---------|------|-------------|
-| **Driver List** | 🚚 | Manage delivery personnel |
-| **Available Drivers** | ✅ | Track driver availability status |
-| **On Trip Drivers** | 🏃 | Track active deliveries |
-| **Driver Tips** | 👍 | Manage driver tips and earnings |
-
-### ⚙️ System Settings
-| Feature | Icon | Description |
-|---------|------|-------------|
-| **Google Map Setting** | 🗺️ | Configure Google Maps API integration |
-| **Push Notification Setting** | 🔔 | Manage push notifications |
-| **Payment Method Setting** | 💳 | Configure payment gateways |
-| **User Profile Setting** | 👤 | Admin profile configuration |
-| **Language Settings** | 🌐 | Multi-language support |
-
----
-
-## 🖥️ Dashboard Mockup Design
-
-```
-┌─────────────────────────────────────────────────────────────────┐
-│  🍔 Laravel Delivery Admin          [Profile] [Settings] [Logout]│
-├─────────────────────────────────────────────────────────────────┤
-│ ┌──────────┐ ┌──────────┐ ┌──────────┐ ┌──────────┐           │
-│ │ 📊 Total │ │ 🍔 Orders│ │ 💰 Earnings│ │ 🚚 Drivers│           │
-│ │   1,234  │ │    567   │ │ $45,678   │ │    89    │           │
-│ └──────────┘ └──────────┘ └──────────┘ └──────────┘           │
-├─────────────────────────────────────────────────────────────────┤
-│                                                                  │
-│   📈 Orders This Week                                           │
-│   ┌─────────────────────────────────────────────────────────┐  │
-│   │                                                         │  │
-│   │    █                                                   │  │
-│   │  █ █        █                                         │  │
-│   │ █ █ █    █ █        █                               │  │
-│   │ █ █ █  █ █ █    █ █ █    █                         │  │
-│   │ ───────────────────────────────────────────────────  │  │
-│   │ Mon Tue Wed Thu Fri Sat Sun                           │  │
-│   └─────────────────────────────────────────────────────────┘  │
-│                                                                  │
-├─────────────────────────────────────────────────────────────────┤
-│  🏪 Recent Restaurants    🔍 Search...     [+ Add Restaurant]   │
-│  ┌──────────────────────────────────────────────────────────┐  │
-│  │ 🖼️ Burger King      ⭐4.5  👤 John   ✅ Active           │  │
-│  │ 🖼️ Pizza Hut        ⭐4.2  👤 Sarah  ✅ Active           │  │
-│  │ 🖼️ KFC             ⭐4.8  👤 Mike   ❌ Inactive         │  │
-│  │ 🖼️ Subway          ⭐4.0  👤 Emma   ✅ Active           │  │
-│  └──────────────────────────────────────────────────────────┘  │
-│                                                                  │
-└─────────────────────────────────────────────────────────────────┘
-```
-
----
-
-## 🎨 UI Color Palette & Style Guide
-
-### Primary Colors
+### Color Palette:
 | Color | Hex | Usage |
 |-------|-----|-------|
-| Primary Orange | `#FF6B35` | Main buttons, highlights |
-| Dark Blue | `#2E4057` | Sidebar, headers |
-| Teal | `#1ABC9C` | Success states, positive metrics |
+| Primary Orange | `#FF6B35` | Main buttons |
+| Dark Blue | `#2E4057` | Sidebar |
+| Teal | `#1ABC9C` | Success states |
+| Warning Amber | `#F39C12` | Warnings |
 
-### Dashboard Cards Design
-```
-┌─────────────────────────────┐
-│  📊 TOTAL ORDERS            │
-│  ═══════════════════════   │
-│                             │
-│      1,234                  │
-│      ↑ 12% from last week   │
-│                             │
-│  ████████████░░░░░░░░░░░░   │
-│  Progress: 78%              │
-└─────────────────────────────┘
-```
+---
 
-### Data Table Design
-```
-┌──────────────────────────────────────────────────────────────┐
-│  🏪 Restaurant Management                      [+ Add New]   │
-├──────────────────────────────────────────────────────────────┤
-│  🔍 Search restaurants...                    [Filter ▼]     │
-├──────┬────────────┬──────────┬─────────┬────────┬──────────┤
-│ 🖼️   │ Name       │ Owner    │ Status  │ Rating │ Actions  │
-├──────┼────────────┼──────────┼─────────┼────────┼──────────┤
-│ [IMG] │ Burger King│ John D.  │ Active  │ ⭐4.5  │ ✏️ 👁️ 🗑️ │
-│ [IMG] │ Pizza Hut  │ Sarah M. │ Active  │ ⭐4.2  │ ✏️ 👁️ 🗑️ │
-│ [IMG] │ KFC        │ Mike T.  │ Inactive│ ⭐4.8  │ ✏️ 👁️ 🗑️ │
-└──────┴────────────┴──────────┴─────────┴────────┴──────────┘
-```
+## 🚀 Features
+
+### 👥 User Management
+- Users
+- User Profile Settings
+- Social Authentication
+
+### 🍔 Restaurant Management
+- Restaurants
+- Restaurant Filters
+- Active/Inactive Restaurants
+- Restaurant Payouts
+
+### 🍕 Food Management
+- Food Category List
+- Food List
+
+### 📦 Order Management
+- Orders
+- Order Reviews
+- Order Transactions
+
+### 💳 Financial Management
+- Coupons
+- Create Coupon
+- Payments List
+- Currencies
+- Wallet
+
+### 🚗 Delivery Management
+- Driver List
+- Available Drivers
+- On Trip Drivers
+- Driver Tips
+
+### ⚙️ System Settings
+- Google Map Setting
+- Social Authentication Setting
+- Push Notification Setting
+- Payment Method Setting
+- User Profile Setting
+- Language Settings
 
 ---
 
@@ -166,69 +128,27 @@ Our Admin Panel features a **modern, clean, and intuitive interface** with:
 
 | Technology | Purpose |
 |------------|---------|
-| Laravel 10.x | Backend Framework |
-| Bootstrap 5 | CSS Framework |
-| jQuery | JavaScript Library |
+| Laravel 10.x | Backend |
+| Bootstrap 5 | CSS |
 | MySQL | Database |
-| Laravel Sanctum | API Authentication |
-| Google Maps API | Location Services |
-| Stripe/PayPal | Payment Gateways |
-| Pusher | Real-time Notifications |
+| Redis | Cache/Queue |
+| N8N | Automation |
+| Venom | WhatsApp |
+| Telegram Bot | Notifications |
 
 ---
 
-## 📂 Project Structure
-
-```
-├── app/
-│   ├── Console/Commands/       # Custom artisan commands
-│   ├── Models/                 # Eloquent models
-│   ├── Providers/              # Service providers
-│   └── Services/               # Business logic
-├── Modules/
-│   └── AI/                     # AI features
-├── config/                     # Configuration
-├── database/
-│   ├── migrations/            # Database migrations
-│   └── seeders/               # Database seeders
-├── public/
-│   ├── assets/                # CSS, JS, Images
-│   └── images/                # UI images
-├── resources/
-│   └── views/                 # Blade templates
-│       ├── admin_users/       # User management
-│       ├── restaurants/       # Restaurant management
-│       ├── orders/            # Order management
-│       ├── foods/             # Food management
-│       ├── coupons/           # Coupon management
-│       ├── drivers/           # Driver management
-│       └── settings/          # System settings
-└── routes/                   # Application routes
-```
-
----
-
-## ⚡ Getting Started
-
-### Prerequisites
-- PHP >= 8.1
-- Composer
-- Node.js & NPM
-- MySQL Database
-- Git
-
-### Installation
+## 📋 Installation
 
 ```bash
-# Clone the repository
-git clone https://github.com/Samsontesfamichael/Laravel-Delivery.git
-
-# Install dependencies
+# Install PHP dependencies
 composer install
+
+# Install Node dependencies
 npm install
 
-# Configure environment
-cp .env.example .env
+# Setup environment
+cp .env.docker .env
 
 # Generate key
 php artisan key:generate
@@ -238,59 +158,16 @@ php artisan migrate
 
 # Start server
 php artisan serve
+
+# Or use Docker
+docker-compose up -d
 ```
-
----
-
-## 📋 Complete Admin Modules
-
-### 📊 Dashboard
-- Overview & Analytics
-- Reports & Statistics
-
-### 👥 User Management
-- Users List
-- User Profile Settings
-- Social Authentication
-
-### 🍔 Restaurant Management  
-- Restaurant List
-- Restaurant Filters
-- Active/Inactive Restaurants
-- Restaurant Payouts
-
-### 🍕 Food Management
-- Food Categories
-- Food List
-
-### 📦 Order Management
-- Orders List
-- Order Reviews
-- Order Transactions
-
-### 💳 Financial Management
-- Coupons
-- Create Coupon
-- Payments List
-- Currencies
-
-### 🚗 Delivery Management
-- Driver List
-- Driver Documents
-- Driver Payouts
-
-### ⚙️ Settings
-- Google Map Setting
-- Social Authentication Setting
-- Push Notification Setting
-- Payment Method Setting
-- User Profile Setting
 
 ---
 
 ## 📝 License
 
-This project is licensed under the [MIT license](https://opensource.org/licenses/MIT).
+MIT License
 
 ---
 
@@ -301,6 +178,4 @@ This project is licensed under the [MIT license](https://opensource.org/licenses
 
 ---
 
-<p align="center">
-  <strong>Built with ❤️ using Laravel | Designed with 🎨</strong>
-</p>
+<p align="center">Built with ❤️ using Laravel</p>
