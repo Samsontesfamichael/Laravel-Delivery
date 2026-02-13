@@ -172,8 +172,6 @@ MIT License
 ---
 
 ## 📧 Contact
-
-- **Email:** teshag2006@gmail.com
 - **GitHub:** [Samsontesfamichael](https://github.com/Samsontesfamichael)
 
 ---
