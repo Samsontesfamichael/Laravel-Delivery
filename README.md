@@ -2,7 +2,7 @@
   <img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Delivery Logo">
 </p>
 
-<h1 align="center">Laravel Delivery - Restaurant Admin Panel</h1>
+<h1 align="center">🍔 Laravel Delivery - Restaurant Admin Panel</h1>
 
 <p align="center">
   A powerful and feature-rich restaurant delivery management system built with Laravel. This admin panel provides comprehensive control over all aspects of your food delivery business.
@@ -10,98 +10,170 @@
 
 ---
 
-## 🚀 Features
+## 🎨 Design Concept
+
+Our Admin Panel features a **modern, clean, and intuitive interface** with:
+
+- 🎯 **Clean Dashboard** - At-a-glance metrics with colorful charts
+- 📱 **Responsive Design** - Works on desktop, tablet, and mobile
+- 🎨 **Color Scheme**:
+  - Primary: `#FF6B35` (Vibrant Orange)
+  - Secondary: `#2E4057` (Dark Blue)
+  - Accent: `#1ABC9C` (Teal)
+  - Success: `#27AE60` (Green)
+  - Warning: `#F39C12` (Amber)
+  - Background: `#F8F9FA` (Light Gray)
+
+---
+
+## 🚀 Features Overview
 
 ### 👥 User Management
-| Feature | Description |
-|---------|-------------|
-| <img src="public/images/users.png" width="30"> **Users** | Manage registered customers, view profiles, track activity |
-| <img src="public/images/user-2.png" width="30"> **User Profile Settings** | Allow users to update personal information, preferences |
-| <img src="public/images/social.png" width="30"> **Social Authentication** | Login via Google, Facebook, and other social platforms |
+| Feature | Icon | Description |
+|---------|------|-------------|
+| **Users** | 👥 | Manage registered customers, view profiles, track activity |
+| **User Profile Settings** | ⚙️ | Allow users to update personal information, preferences |
+| **Social Authentication** | 🔐 | Login via Google, Facebook, and other social platforms |
 
 ### 🍔 Restaurant Management
-| Feature | Description |
-|---------|-------------|
-| <img src="public/images/restaurant.png" width="30"> **Restaurants** | Full CRUD operations for restaurant partners |
-| <img src="public/images/restaurant_filters.png" width="30"> **Restaurant Filters** | Search and filter restaurants by cuisine, location, rating |
-| <img src="public/images/active_restaurant.png" width="30"> **Active/Inactive Restaurants** | Manage restaurant approval status |
-| <img src="public/images/new_restaurant.png" width="30"> **Restaurant Registration** | New restaurant onboarding process |
-| <img src="public/images/restaurants_payouts.png" width="30"> **Restaurant Payouts** | Manage payment settlements for restaurants |
+| Feature | Icon | Description |
+|---------|------|-------------|
+| **Restaurants** | 🏪 | Full CRUD operations for restaurant partners |
+| **Restaurant Filters** | 🔍 | Search and filter restaurants by cuisine, location, rating |
+| **Active/Inactive Restaurants** | ✅❌ | Manage restaurant approval status |
+| **New Restaurant** | ➕ | New restaurant onboarding process |
+| **Restaurant Payouts** | 💰 | Manage payment settlements for restaurants |
 
-### 🍔 Food Management
-| Feature | Description |
-|---------|-------------|
-| <img src="public/images/category.png" width="30"> **Food Category List** | Organize food items into categories |
-| <img src="public/images/food.png" width="30"> **Food List** | Manage menu items with detailed information, pricing |
+### 🍕 Food Management
+| Feature | Icon | Description |
+|---------|------|-------------|
+| **Food Category List** | 📂 | Organize food items into categories |
+| **Food List** | 🍔 | Manage menu items with detailed information, pricing |
 
 ### 📦 Order Management
-| Feature | Description |
-|---------|-------------|
-| <img src="public/images/order.png" width="30"> **Orders** | Track and manage all delivery orders |
-| <img src="public/images/cancel_order.png" width="30"> **Order Reviews** | Review and process customer orders |
-| <img src="public/images/order_transactions.png" width="30"> **Order Transactions** | View detailed transaction history |
+| Feature | Icon | Description |
+|---------|------|-------------|
+| **Orders** | 📋 | Track and manage all delivery orders |
+| **Order Reviews** | ⭐ | Review and process customer orders |
+| **Order Transactions** | 💳 | View detailed transaction history |
 
 ### 💳 Financial Management
-| Feature | Description |
-|---------|-------------|
-| <img src="public/images/coupon.png" width="30"> **Coupons** | View and manage discount coupons |
-| <img src="public/images/cashback.png" width="30"> **Create Coupon** | Generate new promotional codes |
-| <img src="public/images/payment.png" width="30"> **Payments List** | View all transaction records |
-| <img src="public/images/currency.png" width="30"> **Currencies** | Multi-currency support |
-| <img src="public/images/wallet.png" width="30"> **Wallet Management** | User wallet and balance tracking |
+| Feature | Icon | Description |
+|---------|------|-------------|
+| **Coupons** | 🎟️ | View and manage discount coupons |
+| **Create Coupon** | ✨ | Generate new promotional codes |
+| **Payments List** | 💵 | View all transaction records |
+| **Currencies** | 💱 | Multi-currency support |
+| **Wallet** | 👜 | User wallet and balance tracking |
 
 ### 🚗 Delivery Management
-| Feature | Description |
-|---------|-------------|
-| <img src="public/images/driver.png" width="30"> **Driver List** | Manage delivery personnel |
-| <img src="public/images/car_available.png" width="30"> **Available Drivers** | Track driver availability status |
-| <img src="public/images/car_on_trip.png" width="30"> **On Trip Drivers** | Track active deliveries |
-| <img src="public/images/dm-tips.png" width="30"> **Driver Tips** | Manage driver tips and earnings |
+| Feature | Icon | Description |
+|---------|------|-------------|
+| **Driver List** | 🚚 | Manage delivery personnel |
+| **Available Drivers** | ✅ | Track driver availability status |
+| **On Trip Drivers** | 🏃 | Track active deliveries |
+| **Driver Tips** | 👍 | Manage driver tips and earnings |
 
 ### ⚙️ System Settings
-| Feature | Description |
-|---------|-------------|
-| <img src="public/images/location.png" width="30"> **Google Map Setting** | Configure Google Maps API integration |
-| <img src="public/images/notification.png" width="30"> **Push Notification Setting** | Manage push notifications |
-| <img src="public/images/payment.png" width="30"> **Payment Method Setting** | Configure payment gateways (Stripe, PayPal, etc.) |
-| <img src="public/images/settings.png" width="30"> **User Profile Setting** | Admin profile configuration |
-| <img src="public/images/language.png" width="30"> **Language Settings** | Multi-language support |
+| Feature | Icon | Description |
+|---------|------|-------------|
+| **Google Map Setting** | 🗺️ | Configure Google Maps API integration |
+| **Push Notification Setting** | 🔔 | Manage push notifications |
+| **Payment Method Setting** | 💳 | Configure payment gateways |
+| **User Profile Setting** | 👤 | Admin profile configuration |
+| **Language Settings** | 🌐 | Multi-language support |
 
-### 📊 Dashboard & Reports
-| Feature | Description |
-|---------|-------------|
-| <img src="public/images/total_order.png" width="30"> **Total Orders** | Order statistics and analytics |
-| <img src="public/images/total_earning.png" width="30"> **Total Earnings** | Revenue tracking and reports |
-| <img src="public/images/total_payment.png" width="30"> **Total Payments** | Payment analytics |
-| <img src="public/images/reports.png" width="30"> **Reports** | Comprehensive business reports |
+---
+
+## 🖥️ Dashboard Mockup Design
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│  🍔 Laravel Delivery Admin          [Profile] [Settings] [Logout]│
+├─────────────────────────────────────────────────────────────────┤
+│ ┌──────────┐ ┌──────────┐ ┌──────────┐ ┌──────────┐           │
+│ │ 📊 Total │ │ 🍔 Orders│ │ 💰 Earnings│ │ 🚚 Drivers│           │
+│ │   1,234  │ │    567   │ │ $45,678   │ │    89    │           │
+│ └──────────┘ └──────────┘ └──────────┘ └──────────┘           │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                  │
+│   📈 Orders This Week                                           │
+│   ┌─────────────────────────────────────────────────────────┐  │
+│   │                                                         │  │
+│   │    █                                                   │  │
+│   │  █ █        █                                         │  │
+│   │ █ █ █    █ █        █                               │  │
+│   │ █ █ █  █ █ █    █ █ █    █                         │  │
+│   │ ───────────────────────────────────────────────────  │  │
+│   │ Mon Tue Wed Thu Fri Sat Sun                           │  │
+│   └─────────────────────────────────────────────────────────┘  │
+│                                                                  │
+├─────────────────────────────────────────────────────────────────┤
+│  🏪 Recent Restaurants    🔍 Search...     [+ Add Restaurant]   │
+│  ┌──────────────────────────────────────────────────────────┐  │
+│  │ 🖼️ Burger King      ⭐4.5  👤 John   ✅ Active           │  │
+│  │ 🖼️ Pizza Hut        ⭐4.2  👤 Sarah  ✅ Active           │  │
+│  │ 🖼️ KFC             ⭐4.8  👤 Mike   ❌ Inactive         │  │
+│  │ 🖼️ Subway          ⭐4.0  👤 Emma   ✅ Active           │  │
+│  └──────────────────────────────────────────────────────────┘  │
+│                                                                  │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+---
+
+## 🎨 UI Color Palette & Style Guide
+
+### Primary Colors
+| Color | Hex | Usage |
+|-------|-----|-------|
+| Primary Orange | `#FF6B35` | Main buttons, highlights |
+| Dark Blue | `#2E4057` | Sidebar, headers |
+| Teal | `#1ABC9C` | Success states, positive metrics |
+
+### Dashboard Cards Design
+```
+┌─────────────────────────────┐
+│  📊 TOTAL ORDERS            │
+│  ═══════════════════════   │
+│                             │
+│      1,234                  │
+│      ↑ 12% from last week   │
+│                             │
+│  ████████████░░░░░░░░░░░░   │
+│  Progress: 78%              │
+└─────────────────────────────┘
+```
+
+### Data Table Design
+```
+┌──────────────────────────────────────────────────────────────┐
+│  🏪 Restaurant Management                      [+ Add New]   │
+├──────────────────────────────────────────────────────────────┤
+│  🔍 Search restaurants...                    [Filter ▼]     │
+├──────┬────────────┬──────────┬─────────┬────────┬──────────┤
+│ 🖼️   │ Name       │ Owner    │ Status  │ Rating │ Actions  │
+├──────┼────────────┼──────────┼─────────┼────────┼──────────┤
+│ [IMG] │ Burger King│ John D.  │ Active  │ ⭐4.5  │ ✏️ 👁️ 🗑️ │
+│ [IMG] │ Pizza Hut  │ Sarah M. │ Active  │ ⭐4.2  │ ✏️ 👁️ 🗑️ │
+│ [IMG] │ KFC        │ Mike T.  │ Inactive│ ⭐4.8  │ ✏️ 👁️ 🗑️ │
+└──────┴────────────┴──────────┴─────────┴────────┴──────────┘
+```
 
 ---
 
 ## 🛠️ Technology Stack
 
-- **Backend:** Laravel 10.x
-- **Frontend:** Bootstrap 5, jQuery, SCSS, JavaScript
-- **Database:** MySQL
-- **Authentication:** Laravel Sanctum
-- **Maps:** Google Maps API
-- **Notifications:** Pusher/OneSignal
-- **Payments:** Stripe, PayPal, PayStack, RazorPay, Flutterwave
-
----
-
-## 📸 Application Screenshots
-
-### Admin Dashboard
-![Dashboard](public/images/app_homepage_theme_1.png)
-
-### Restaurant Management
-![Restaurants](public/images/restaurant.png)
-
-### Order Management
-![Orders](public/images/order.png)
-
-### Payment Methods
-![Payments](public/images/payment.png)
+| Technology | Purpose |
+|------------|---------|
+| Laravel 10.x | Backend Framework |
+| Bootstrap 5 | CSS Framework |
+| jQuery | JavaScript Library |
+| MySQL | Database |
+| Laravel Sanctum | API Authentication |
+| Google Maps API | Location Services |
+| Stripe/PayPal | Payment Gateways |
+| Pusher | Real-time Notifications |
 
 ---
 
@@ -110,28 +182,27 @@
 ```
 ├── app/
 │   ├── Console/Commands/       # Custom artisan commands
-│   ├── Models/                # Eloquent models (User, Order, Restaurant, etc.)
-│   ├── Providers/             # Service providers
-│   └── Services/              # Business logic services
+│   ├── Models/                 # Eloquent models
+│   ├── Providers/              # Service providers
+│   └── Services/               # Business logic
 ├── Modules/
-│   └── AI/                    # AI-powered features
-├── config/                    # Configuration files
+│   └── AI/                     # AI features
+├── config/                     # Configuration
 ├── database/
-│   ├── migrations/           # Database migrations
-│   └── seeders/              # Database seeders
+│   ├── migrations/            # Database migrations
+│   └── seeders/               # Database seeders
 ├── public/
-│   ├── assets/               # CSS, JS, Images
-│   └── images/               # UI images and icons
+│   ├── assets/                # CSS, JS, Images
+│   └── images/                # UI images
 ├── resources/
-│   └── views/                # Blade templates
-│       ├── admin_users/      # User management views
-│       ├── restaurants/      # Restaurant management
-│       ├── orders/           # Order management
-│       ├── foods/            # Food management
-│       ├── coupons/          # Coupon management
-│       ├── drivers/          # Driver management
-│       ├── payments/         # Payment settings
-│       └── settings/         # System settings
+│   └── views/                 # Blade templates
+│       ├── admin_users/       # User management
+│       ├── restaurants/       # Restaurant management
+│       ├── orders/            # Order management
+│       ├── foods/             # Food management
+│       ├── coupons/           # Coupon management
+│       ├── drivers/           # Driver management
+│       └── settings/          # System settings
 └── routes/                   # Application routes
 ```
 
@@ -148,132 +219,88 @@
 
 ### Installation
 
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/Samsontesfamichael/Laravel-Delivery.git
-   ```
+```bash
+# Clone the repository
+git clone https://github.com/Samsontesfamichael/Laravel-Delivery.git
 
-2. **Install PHP dependencies**
-   ```bash
-   composer install
-   ```
+# Install dependencies
+composer install
+npm install
 
-3. **Install Node.js dependencies**
-   ```bash
-   npm install
-   ```
+# Configure environment
+cp .env.example .env
 
-4. **Configure environment**
-   ```bash
-   cp .env.example .env
-   ```
-   
-   Update `.env` with your database credentials and API keys.
+# Generate key
+php artisan key:generate
 
-5. **Generate application key**
-   ```bash
-   php artisan key:generate
-   ```
+# Run migrations
+php artisan migrate
 
-6. **Run migrations**
-   ```bash
-   php artisan migrate
-   ```
-
-7. **Seed the database (optional)**
-   ```bash
-   php artisan db:seed
-   ```
-
-8. **Start the development server**
-   ```bash
-   php artisan serve
-   ```
+# Start server
+php artisan serve
+```
 
 ---
 
-## 🔑 Configuration Required
+## 📋 Complete Admin Modules
 
-After installation, configure these settings in the admin panel:
+### 📊 Dashboard
+- Overview & Analytics
+- Reports & Statistics
 
-1. **Google Maps** - Enter your Google Maps API key in Settings > Google Map
-2. **Payment Methods** - Configure Stripe, PayPal, PayStack, or other gateways
-3. **Push Notifications** - Set up FCM/OneSignal credentials
-4. **Currencies** - Add supported currencies in Settings > Currencies
-5. **Social Auth** - Configure OAuth credentials for social login
+### 👥 User Management
+- Users List
+- User Profile Settings
+- Social Authentication
 
----
+### 🍔 Restaurant Management  
+- Restaurant List
+- Restaurant Filters
+- Active/Inactive Restaurants
+- Restaurant Payouts
 
-## 📋 All Admin Modules
+### 🍕 Food Management
+- Food Categories
+- Food List
 
-```
-📊 Dashboard
-├── Overview & Analytics
-├── Reports & Statistics
+### 📦 Order Management
+- Orders List
+- Order Reviews
+- Order Transactions
 
-👥 User Management
-├── Users List
-├── User Profile Settings
-└── Social Authentication
+### 💳 Financial Management
+- Coupons
+- Create Coupon
+- Payments List
+- Currencies
 
-🍔 Restaurant Management  
-├── Restaurant List
-├── Restaurant Filters
-├── Active/Inactive Restaurants
-└── Restaurant Payouts
+### 🚗 Delivery Management
+- Driver List
+- Driver Documents
+- Driver Payouts
 
-🍕 Food Management
-├── Food Categories
-├── Food List
-
-📦 Order Management
-├── Orders List
-├── Order Reviews
-└── Order Transactions
-
-💳 Financial Management
-├── Coupons
-├── Create Coupon
-├── Payments List
-├── Currencies
-└── Wallet Management
-
-🚗 Delivery Management
-├── Driver List
-├── Driver Documents
-└── Driver Payouts
-
-⚙️ Settings
-├── Google Map Setting
-├── Social Authentication Setting
-├── Push Notification Setting
-├── Payment Method Setting
-├── User Profile Setting
-└── Language Settings
-```
+### ⚙️ Settings
+- Google Map Setting
+- Social Authentication Setting
+- Push Notification Setting
+- Payment Method Setting
+- User Profile Setting
 
 ---
 
 ## 📝 License
 
-This project is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
-
----
-
-## 🤝 Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
+This project is licensed under the [MIT license](https://opensource.org/licenses/MIT).
 
 ---
 
 ## 📧 Contact
 
-For inquiries or support, please contact:
 - **Email:** teshag2006@gmail.com
 - **GitHub:** [Samsontesfamichael](https://github.com/Samsontesfamichael)
 
 ---
 
 <p align="center">
-  <strong>Built with ❤️ using Laravel</strong>
+  <strong>Built with ❤️ using Laravel | Designed with 🎨</strong>
 </p>
