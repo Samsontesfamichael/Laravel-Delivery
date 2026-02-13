@@ -1,65 +1,175 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
-
 <p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+  <img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Delivery Logo">
 </p>
 
-## About Laravel
+<h1 align="center">Laravel Delivery - Restaurant Admin Panel</h1>
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+<p align="center">
+  A powerful and feature-rich restaurant delivery management system built with Laravel. This admin panel provides comprehensive control over all aspects of your food delivery business.
+</p>
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+---
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## 🚀 Features
 
-## Learning Laravel
+### 👥 User Management
+- **Users** - Manage registered customers
+- **User Profile Settings** - Allow users to update their personal information
+- **Social Authentication** - Login via social media platforms (Google, Facebook, etc.)
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### 🍔 Restaurant Management
+- **Restaurants** - Full CRUD operations for restaurant partners
+- **Restaurant Filters** - Search and filter restaurants by various criteria
+- **Restaurant Payouts** - Manage payment settlements for restaurants
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### 🍕 Food Management
+- **Food Category List** - Organize food items into categories
+- **Food List** - Manage menu items with detailed information
 
-## Laravel Sponsors
+### 📦 Order Management
+- **Orders** - Track and manage all delivery orders
+- **Orders Review** - Review and process customer orders
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+### 💳 Financial Management
+- **Coupons** - Create and manage discount coupons
+- **Create Coupon** - Generate new promotional codes
+- **Payments List** - View all transaction records
+- **Currencies** - Multi-currency support
 
-### Premium Partners
+### 🚗 Delivery Management
+- **Driver List** - Manage delivery personnel
+- **Driver Tracking** - Real-time driver location
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+### ⚙️ System Settings
+- **Google Map Setting** - Configure Google Maps API integration
+- **Push Notification Setting** - Manage push notifications
+- **Payment Method Setting** - Configure payment gateways
+- **User Profile Setting** - Admin profile configuration
 
-## Contributing
+---
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## 🛠️ Technology Stack
 
-## Code of Conduct
+- **Backend:** Laravel 10.x
+- **Frontend:** Bootstrap 5, jQuery, SCSS
+- **Database:** MySQL
+- **Authentication:** Laravel Sanctum
+- **Maps:** Google Maps API
+- **Notifications:** Pusher/OneSignal
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+---
 
-## Security Vulnerabilities
+## 📸 Screenshots
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+| Dashboard | Orders | Restaurants |
+|-----------|--------|-------------|
+| ![Dashboard](public/assets/images/screenshots/dashboard.png) | ![Orders](public/assets/images/screenshots/orders.png) | ![Restaurants](public/assets/images/screenshots/restaurants.png) |
 
-## License
+---
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
-# Laravel-Delivery
+## 📂 Project Structure
+
+```
+├── app/
+│   ├── Console/Commands/       # Custom artisan commands
+│   ├── Models/                 # Eloquent models
+│   ├── Providers/              # Service providers
+│   └── Services/               # Business logic services
+├── Modules/                    # Modular Laravel application
+├── config/                     # Configuration files
+├── database/
+│   ├── migrations/            # Database migrations
+│   └── seeders/               # Database seeders
+├── public/
+│   ├── assets/                # CSS, JS, Images
+│   └── plugins/              # Third-party plugins
+├── resources/                 # Views and assets
+└── routes/                    # Application routes
+```
+
+---
+
+## ⚡ Getting Started
+
+### Prerequisites
+- PHP >= 8.1
+- Composer
+- Node.js & NPM
+- MySQL Database
+- Git
+
+### Installation
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/Samsontesfamichael/Laravel-Delivery.git
+   ```
+
+2. **Install PHP dependencies**
+   ```bash
+   composer install
+   ```
+
+3. **Install Node.js dependencies**
+   ```bash
+   npm install
+   ```
+
+4. **Configure environment**
+   ```bash
+   cp .env.example .env
+   ```
+   
+   Update `.env` with your database credentials and API keys.
+
+5. **Generate application key**
+   ```bash
+   php artisan key:generate
+   ```
+
+6. **Run migrations**
+   ```bash
+   php artisan migrate
+   ```
+
+7. **Seed the database (optional)**
+   ```bash
+   php artisan db:seed
+   ```
+
+8. **Start the development server**
+   ```bash
+   php artisan serve
+   ```
+
+---
+
+## 🔑 Configuration Required
+
+After installation, configure these settings in the admin panel:
+
+1. **Google Maps** - Enter your Google Maps API key
+2. **Payment Methods** - Configure Stripe, PayPal, or other gateways
+3. **Push Notifications** - Set up FCM/OneSignal credentials
+4. **Currencies** - Add supported currencies
+5. **Social Auth** - Configure OAuth credentials
+
+---
+
+## 📝 License
+
+This project is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+---
+
+## 📧 Contact
+
+For inquiries or support, please contact:
+- **Email:** teshag2006@gmail.com
+- **GitHub:** [Samsontesfamichael](https://github.com/Samsontesfamichael)
