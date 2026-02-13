@@ -64,3 +64,25 @@ Route::prefix('ai')->group(function () {
     Route::post('/generate-category-banner', [AIController::class, 'generateCategoryBanner']);
     Route::post('/custom-image', [AIController::class, 'customImage']);
 });
+
+// ==================== DELIVERY TRACKING ====================
+Route::prefix('delivery')->group(function () {
+    // Driver location
+    Route::get('/driver/{driverId}/location', [DeliveryTrackingController::class, 'getDriverLocation']);
+    Route::post('/driver/location', [DeliveryTrackingController::class, 'updateLocation']);
+    
+    // ETA & Routes
+    Route::post('/eta', [DeliveryTrackingController::class, 'calculateETA']);
+    Route::post('/route', [DeliveryTrackingController::class, 'getOptimizedRoute']);
+    
+    // Geocoding
+    Route::get('/geocode', [DeliveryTrackingController::class, 'geocode']);
+    Route::get('/geocode-address', [DeliveryTrackingController::class, 'geocodeAddress']);
+    
+    // Delivery Zone
+    Route::post('/zone', [DeliveryTrackingController::class, 'checkDeliveryZone']);
+    
+    // Order Tracking
+    Route::get('/order/{orderId}/track', [DeliveryTrackingController::class, 'trackOrder']);
+    Route::get('/nearby-drivers', [DeliveryTrackingController::class, 'getNearbyDrivers']);
+});
