@@ -5,96 +5,8 @@
 <h1 align="center">🍔 Laravel Delivery - Restaurant Admin Panel</h1>
 
 <p align="center">
-  A powerful and feature-rich restaurant delivery management system built with Laravel.
+  A powerful and feature-rich restaurant delivery management system built with Laravel. This admin panel provides comprehensive control over all aspects of your food delivery business.
 </p>
-
----
-
-## 🎨 New Attractive Color Palette
-
-We've upgraded the design with a fresh, modern, and eye-catching color scheme:
-
-### Primary Colors
-| Color Name | Hex Code | Usage |
-|------------|----------|-------|
-| 🎯 **Electric Purple** | `#8B5CF6` | Primary buttons, highlights |
-| 🌊 **Ocean Blue** | `#0EA5E9` | Links, accents |
-| 💚 **Fresh Mint** | `#10B981` | Success states |
-| 🔥 **Hot Coral** | `#F43F5E` | Important actions |
-
-### Secondary Colors
-| Color Name | Hex Code | Usage |
-|------------|----------|-------|
-| 🌙 **Midnight** | `#1E293B` | Sidebar, dark backgrounds |
-| ⭐ **Golden Sun** | `#F59E0B` | Ratings, stars |
-| 💜 **Soft Violet** | `#A78BFA` | Secondary buttons |
-| 🌫️ **Slate Gray** | `#64748B` | Text, borders |
-
-### Background Colors
-| Color Name | Hex Code | Usage |
-|------------|----------|-------|
-| ❄️ **Snow White** | `#F8FAFC` | Main background |
-| 🧊 **Ice Blue** | `#F1F5F9` | Card backgrounds |
-| 🌑 **Charcoal** | `#0F172A` | Dark mode |
-
-### Status Colors
-| Color Name | Hex Code | Usage |
-|------------|----------|-------|
-| ✅ **Success Green** | `#22C55E` | Success messages |
-| ⚠️ **Warning Amber** | `#F59E0B` | Warnings |
-| ❌ **Error Red** | `#EF4444` | Errors |
-| ℹ️ **Info Blue** | `#3B82F6` | Information |
-
----
-
-## 🌈 Gradient Combinations
-
-```
-Primary Gradient:    linear-gradient(135deg, #8B5CF6 0%, #EC4899 100%)
-Background Gradient: linear-gradient(180deg, #F8FAFC 0%, #E2E8F0 100%)
-Card Gradient:      linear-gradient(145deg, #FFFFFF 0%, #F8FAFC 100%)
-Dark Gradient:      linear-gradient(180deg, #1E293B 0%, #0F172A 100%)
-```
-
----
-
-## 🖥️ Dashboard Mockup (New Design)
-
-```
-┌─────────────────────────────────────────────────────────────────┐
-│  🍔 Laravel Delivery Admin        [🔔] [👤 Profile] [⚙️]       │
-├─────────────────────────────────────────────────────────────────┤
-│ ┌──────────┐ ┌──────────┐ ┌──────────┐ ┌──────────┐           │
-│ │ 📊       │ │ 🍔       │ │ 💰       │ │ 🚚       │           │
-│ │ Total    │ │ Orders   │ │ Earnings │ │ Drivers  │           │
-│ │   1,234  │ │    567   │ │ $45,678  │ │    89    │           │
-│ │ 🔼 12%   │ │ 🔼 8%    │ │ 🔼 15%   │ │ 🔽 3%    │           │
-│ │#22C55E   │ │#22C55E   │ │#22C55E   │ │#EF4444   │           │
-│ └──────────┘ └──────────┘ └──────────┘ └──────────┘           │
-├─────────────────────────────────────────────────────────────────┤
-│                                                                  │
-│   📈 Orders This Week         [📅 This Week ▼]                   │
-│   ┌─────────────────────────────────────────────────────────┐   │
-│   │                                                         │   │
-│   │    █▓▓                                                │   │
-│   │  ▓▓▓▓▓▓    █▓▓                                     │   │
-│   │ ▓▓▓▓▓▓▓▓▓▓▓▓▓    █▓▓    █▓▓                       │   │
-│   │ ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓    █▓▓    █▓▓    █▓▓      │   │
-│   │ ─────────────────────────────────────────────────────   │   │
-│   │ Mon  Tue  Wed  Thu  Fri  Sat  Sun                       │   │
-│   └─────────────────────────────────────────────────────────┘   │
-│                                                                  │
-├─────────────────────────────────────────────────────────────────┤
-│  🏪 Recent Restaurants    🔍 Search...       [+ Add New]       │
-│  ┌──────────────────────────────────────────────────────────┐   │
-│  │ 🖼️ Burger King    ⭐4.5  👤 John    🟢 Active           │   │
-│  │ 🖼️ Pizza Hut     ⭐4.2  👤 Sarah   🟢 Active           │   │
-│  │ 🖼️ KFC           ⭐4.8  👤 Mike    🔴 Inactive        │   │
-│  │ 🖼️ Subway        ⭐4.0  👤 Emma    🟢 Active           │   │
-│  └──────────────────────────────────────────────────────────┘   │
-│                                                                  │
-└─────────────────────────────────────────────────────────────────┘
-```
 
 ---
 
@@ -103,57 +15,151 @@ Dark Gradient:      linear-gradient(180deg, #1E293B 0%, #0F172A 100%)
 ### Quick Start with Docker
 
 ```bash
+# Clone and setup
 git clone https://github.com/Samsontesfamichael/Laravel-Delivery.git
 cd Laravel-Delivery
+
+# Copy environment file
 cp .env.docker .env
+
+# Start all services
 docker-compose up -d
 ```
 
 ### Services Running:
-- 🖥️ Laravel App: http://localhost
-- 🐬 MySQL: localhost:3306
-- 🔴 Redis: localhost:6379
-- 📊 N8N: http://localhost:5678
-- 💬 WhatsApp: http://localhost:3000
+
+| Service | URL | Description |
+|---------|-----|-------------|
+| 🖥️ **Laravel App** | http://localhost | Main application |
+| 🐬 **MySQL** | localhost:3306 | Database |
+| 🔴 **Redis** | localhost:6379 | Cache & Queue |
+| 📊 **N8N** | http://localhost:5678 | Automation & Webhooks |
+| 💬 **Venom (WhatsApp)** | http://localhost:3000 | WhatsApp notifications |
+
+---
+
+## 🔔 N8N Monitoring & Notifications
+
+### Automated Alerts to WhatsApp & Telegram
+
+The system includes n8n workflow automation that monitors your delivery platform and sends real-time notifications.
+
+### Features:
+
+- ✅ **System Health Monitoring** - Checks database, cache, storage every 5 minutes
+- ✅ **Order Alerts** - Notifies when orders exceed threshold
+- ✅ **Pending Order Warnings** - Alerts when pending orders pile up
+- ✅ **Daily Reports** - Automated daily summary to WhatsApp/Telegram
+- ✅ **Critical Alerts** - Immediate notification for system failures
+
+### API Endpoints for Monitoring:
+
+```
+GET /api/system/status     - Get system status for n8n
+GET /api/system/health     - Health check endpoint
+GET /api/orders/pending    - Get pending orders
+GET /api/orders/today      - Today's orders
+GET /api/orders/stats      - Order statistics
+
+POST /api/notify/telegram  - Send Telegram message
+POST /api/notify/whatsapp  - Send WhatsApp message
+```
+
+---
+
+## 🎨 Design Concept
+
+### Color Palette:
+| Color | Hex | Usage |
+|-------|-----|-------|
+| Primary Orange | `#FF6B35` | Main buttons |
+| Dark Blue | `#2E4057` | Sidebar |
+| Teal | `#1ABC9C` | Success states |
+| Warning Amber | `#F39C12` | Warnings |
 
 ---
 
 ## 🚀 Features
 
 ### 👥 User Management
-- Users, User Profile Settings, Social Authentication
+- Users
+- User Profile Settings
+- Social Authentication
 
 ### 🍔 Restaurant Management
-- Restaurants, Restaurant Filters, Active/Inactive, Payouts
+- Restaurants
+- Restaurant Filters
+- Active/Inactive Restaurants
+- Restaurant Payouts
 
 ### 🍕 Food Management
-- Food Categories, Food List
+- Food Category List
+- Food List
 
 ### 📦 Order Management
-- Orders, Order Reviews, Order Transactions
+- Orders
+- Order Reviews
+- Order Transactions
 
 ### 💳 Financial Management
-- Coupons, Create Coupon, Payments, Currencies, Wallet
+- Coupons
+- Create Coupon
+- Payments List
+- Currencies
+- Wallet
 
 ### 🚗 Delivery Management
-- Driver List, Available Drivers, On Trip, Driver Tips
+- Driver List
+- Available Drivers
+- On Trip Drivers
+- Driver Tips
 
 ### ⚙️ System Settings
-- Google Maps, Social Auth, Push Notifications, Payment Methods
+- Google Map Setting
+- Social Authentication Setting
+- Push Notification Setting
+- Payment Method Setting
+- User Profile Setting
+- Language Settings
+
+---
+
+## 🛠️ Technology Stack
+
+| Technology | Purpose |
+|------------|---------|
+| Laravel 10.x | Backend |
+| Bootstrap 5 | CSS |
+| MySQL | Database |
+| Redis | Cache/Queue |
+| N8N | Automation |
+| Venom | WhatsApp |
+| Telegram Bot | Notifications |
 
 ---
 
 ## 📋 Installation
 
 ```bash
+# Install PHP dependencies
 composer install
+
+# Install Node dependencies
 npm install
+
+# Setup environment
 cp .env.docker .env
+
+# Generate key
 php artisan key:generate
+
+# Run migrations
 php artisan migrate
+
+# Start server
 php artisan serve
 
-# Or Docker
+# Or use Docker
 docker-compose up -d
 ```
 
