@@ -592,3 +592,52 @@ Route::middleware(['permission:supportHistory,supportHistory.list'])->group(func
 Route::middleware(['permission:vendors,vendors.chat'])->group(function () {
         Route::get('/vendors/chat/{id}', [App\Http\Controllers\RestaurantController::class, 'vendorChat'])->name('vendors.chat');
 });
+
+// Payment Gateways Routes
+Route::middleware(['permission:payment_gateways,payment_gateways.list'])->group(function () {
+    Route::get('/payment-gateways', [App\Http\Controllers\Admin\PaymentGatewayController::class, 'index'])->name('admin.payment-gateways.index');
+    Route::get('/payment-gateways/create', [App\Http\Controllers\Admin\PaymentGatewayController::class, 'create'])->name('admin.payment-gateways.create');
+    Route::post('/payment-gateways', [App\Http\Controllers\Admin\PaymentGatewayController::class, 'store'])->name('admin.payment-gateways.store');
+    Route::get('/payment-gateways/{paymentGateway}', [App\Http\Controllers\Admin\PaymentGatewayController::class, 'show'])->name('admin.payment-gateways.show');
+    Route::get('/payment-gateways/{paymentGateway}/edit', [App\Http\Controllers\Admin\PaymentGatewayController::class, 'edit'])->name('admin.payment-gateways.edit');
+    Route::put('/payment-gateways/{paymentGateway}', [App\Http\Controllers\Admin\PaymentGatewayController::class, 'update'])->name('admin.payment-gateways.update');
+    Route::delete('/payment-gateways/{paymentGateway}', [App\Http\Controllers\Admin\PaymentGatewayController::class, 'destroy'])->name('admin.payment-gateways.destroy');
+    Route::post('/payment-gateways/{paymentGateway}/toggle-status', [App\Http\Controllers\Admin\PaymentGatewayController::class, 'toggleStatus'])->name('admin.payment-gateways.toggle-status');
+    Route::post('/payment-gateways/{paymentGateway}/test', [App\Http\Controllers\Admin\PaymentGatewayController::class, 'testConnection'])->name('admin.payment-gateways.test');
+    Route::post('/payment-gateways/sort-order', [App\Http\Controllers\Admin\PaymentGatewayController::class, 'updateSortOrder'])->name('admin.payment-gateways.sort-order');
+    Route::post('/payment-gateways/bulk-status', [App\Http\Controllers\Admin\PaymentGatewayController::class, 'bulkUpdateStatus'])->name('admin.payment-gateways.bulk-status');
+});
+
+// Subscriptions Routes
+Route::middleware(['permission:subscriptions,subscriptions.list'])->group(function () {
+    Route::get('/subscriptions', [App\Http\Controllers\Admin\SubscriptionController::class, 'index'])->name('admin.subscriptions.index');
+    Route::get('/subscriptions/create', [App\Http\Controllers\Admin\SubscriptionController::class, 'create'])->name('admin.subscriptions.create');
+    Route::post('/subscriptions', [App\Http\Controllers\Admin\SubscriptionController::class, 'store'])->name('admin.subscriptions.store');
+    Route::get('/subscriptions/{subscription}', [App\Http\Controllers\Admin\SubscriptionController::class, 'show'])->name('admin.subscriptions.show');
+    Route::get('/subscriptions/{subscription}/edit', [App\Http\Controllers\Admin\SubscriptionController::class, 'edit'])->name('admin.subscriptions.edit');
+    Route::put('/subscriptions/{subscription}', [App\Http\Controllers\Admin\SubscriptionController::class, 'update'])->name('admin.subscriptions.update');
+    Route::delete('/subscriptions/{subscription}', [App\Http\Controllers\Admin\SubscriptionController::class, 'destroy'])->name('admin.subscriptions.destroy');
+    Route::post('/subscriptions/{subscription}/cancel', [App\Http\Controllers\Admin\SubscriptionController::class, 'cancel'])->name('admin.subscriptions.cancel');
+    Route::post('/subscriptions/{subscription}/pause', [App\Http\Controllers\Admin\SubscriptionController::class, 'pause'])->name('admin.subscriptions.pause');
+    Route::post('/subscriptions/{subscription}/resume', [App\Http\Controllers\Admin\SubscriptionController::class, 'resume'])->name('admin.subscriptions.resume');
+    Route::post('/subscriptions/{subscription}/renew', [App\Http\Controllers\Admin\SubscriptionController::class, 'renew'])->name('admin.subscriptions.renew');
+    Route::get('/subscriptions/export', [App\Http\Controllers\Admin\SubscriptionController::class, 'export'])->name('admin.subscriptions.export');
+    Route::get('/subscriptions/statistics', [App\Http\Controllers\Admin\SubscriptionController::class, 'statistics'])->name('admin.subscriptions.statistics');
+});
+
+// Delivery Zones Routes
+Route::middleware(['permission:delivery_zones,delivery_zones.list'])->group(function () {
+    Route::get('/delivery-zones', [App\Http\Controllers\Admin\DeliveryZoneController::class, 'index'])->name('admin.delivery-zones.index');
+    Route::get('/delivery-zones/create', [App\Http\Controllers\Admin\DeliveryZoneController::class, 'create'])->name('admin.delivery-zones.create');
+    Route::post('/delivery-zones', [App\Http\Controllers\Admin\DeliveryZoneController::class, 'store'])->name('admin.delivery-zones.store');
+    Route::get('/delivery-zones/{deliveryZone}', [App\Http\Controllers\Admin\DeliveryZoneController::class, 'show'])->name('admin.delivery-zones.show');
+    Route::get('/delivery-zones/{deliveryZone}/edit', [App\Http\Controllers\Admin\DeliveryZoneController::class, 'edit'])->name('admin.delivery-zones.edit');
+    Route::put('/delivery-zones/{deliveryZone}', [App\Http\Controllers\Admin\DeliveryZoneController::class, 'update'])->name('admin.delivery-zones.update');
+    Route::delete('/delivery-zones/{deliveryZone}', [App\Http\Controllers\Admin\DeliveryZoneController::class, 'destroy'])->name('admin.delivery-zones.destroy');
+    Route::post('/delivery-zones/{deliveryZone}/toggle-status', [App\Http\Controllers\Admin\DeliveryZoneController::class, 'toggleStatus'])->name('admin.delivery-zones.toggle-status');
+    Route::post('/delivery-zones/{deliveryZone}/set-default', [App\Http\Controllers\Admin\DeliveryZoneController::class, 'setDefault'])->name('admin.delivery-zones.set-default');
+    Route::post('/delivery-zones/{deliveryZone}/clone', [App\Http\Controllers\Admin\DeliveryZoneController::class, 'clone'])->name('admin.delivery-zones.clone');
+    Route::post('/delivery-zones/check-delivery', [App\Http\Controllers\Admin\DeliveryZoneController::class, 'checkDelivery'])->name('admin.delivery-zones.check-delivery');
+    Route::post('/delivery-zones/bulk-status', [App\Http\Controllers\Admin\DeliveryZoneController::class, 'bulkUpdateStatus'])->name('admin.delivery-zones.bulk-status');
+    Route::get('/delivery-zones/statistics', [App\Http\Controllers\Admin\DeliveryZoneController::class, 'statistics'])->name('admin.delivery-zones.statistics');
+});
