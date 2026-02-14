@@ -641,3 +641,10 @@ Route::middleware(['permission:delivery_zones,delivery_zones.list'])->group(func
     Route::post('/delivery-zones/bulk-status', [App\Http\Controllers\Admin\DeliveryZoneController::class, 'bulkUpdateStatus'])->name('admin.delivery-zones.bulk-status');
     Route::get('/delivery-zones/statistics', [App\Http\Controllers\Admin\DeliveryZoneController::class, 'statistics'])->name('admin.delivery-zones.statistics');
 });
+
+// Module Management Routes
+Route::middleware(['permission:modules,modules.list'])->group(function () {
+    Route::get('/modules', [App\Http\Controllers\Admin\ModuleController::class, 'index'])->name('admin.modules.index');
+    Route::post('/modules/toggle', [App\Http\Controllers\Admin\ModuleController::class, 'toggle'])->name('admin.modules.toggle');
+    Route::get('/modules/status', [App\Http\Controllers\Admin\ModuleController::class, 'status'])->name('admin.modules.status');
+});
