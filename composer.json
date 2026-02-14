@@ -1,38 +1,38 @@
 {
   "name": "laravel/laravel",
   "type": "project",
-  "description": "The Laravel Framework.",
+  "description": "The Laravel Framework - Delivery Admin Panel",
   "keywords": [
     "framework",
-    "laravel"
+    "laravel",
+    "delivery",
+    "restaurant"
   ],
   "license": "MIT",
   "require": {
-    "php": "^8.1",
-    "braintree/braintree_php": "^6.7",
-    "google/apiclient": "^2.16",
-    "guzzlehttp/guzzle": "^7.2",
-    "illuminate/support": "^10.0",
-    "kreait/firebase-php": "^7.15",
-    "laravel/framework": "^10.10",
+    "php": "^8.2",
+    "braintree/braintree_php": "^7.0",
+    "google/apiclient": "^2.18",
+    "guzzlehttp/guzzle": "^7.9",
+    "illuminate/support": "^11.0",
+    "kreait/firebase-php": "^7.24",
+    "laravel/framework": "^11.0",
     "laravel/sanctum": "^3.3",
-    "laravel/tinker": "^2.8",
-    "laravel/ui": "^4.2.2",
-    "nwidart/laravel-modules": "^10.0",
+    "laravel/tinker": "^2.9",
+    "laravel/ui": "^4.5",
+    "nwidart/laravel-modules": "^11.0",
     "openai-php/laravel": "^0.11.0",
-    "paypal/paypal-payouts-sdk": "~1.0.0",
-    "paytm/paytmchecksum": "^1.1",
-    "razorpay/razorpay": "2.*",
-    "stripe/stripe-php": "^14.10"
+    "razorpay/razorpay": "^2.9",
+    "stripe/stripe-php": "^17.0"
   },
   "require-dev": {
-    "fakerphp/faker": "^1.9.1",
-    "laravel/sail": "^1.0.1",
-    "mockery/mockery": "^1.4.4",
-    "nunomaduro/collision": "^7.0",
-    "phpunit/phpunit": "10.5.62",
-    "psy/psysh": "0.12.19",
-    "spatie/laravel-ignition": "^2.0"
+    "fakerphp/faker": "^1.24",
+    "laravel/sail": "^1.29",
+    "mockery/mockery": "^1.6",
+    "nunomaduro/collision": "^8.0",
+    "phpunit/phpunit": "^10.5",
+    "psy/psysh": "^0.12",
+    "spatie/laravel-ignition": "^2.8"
   },
   "autoload": {
     "psr-4": {
@@ -73,9 +73,21 @@
     "sort-packages": true,
     "allow-plugins": {
       "php-http/discovery": true,
-      "wikimedia/composer-merge-plugin": true
+      "wikimedia/composer-merge-plugin": true,
+      "pestphp/pest-plugin": true,
+      "php-http/discovery": true
+    },
+    "audit": {
+      "block-insecure": false
     }
   },
   "minimum-stability": "dev",
-  "prefer-stable": true
+  "prefer-stable": true,
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://repo.packagist.org",
+      "canonical": true
+    }
+  ]
 }
