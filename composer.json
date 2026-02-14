@@ -31,6 +31,7 @@
     "mockery/mockery": "^1.4.4",
     "nunomaduro/collision": "^7.0",
     "phpunit/phpunit": "10.5.62",
+    "psy/psysh": "0.12.19",
     "spatie/laravel-ignition": "^2.0"
   },
   "autoload": {
