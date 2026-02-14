@@ -1,15 +1,14 @@
 @extends('layouts.app')
-
 @section('content')
 <div class="page-wrapper">
     <div class="row page-titles">
         <div class="col-md-5 align-self-center">
-            <h3 class="text-primary">Module Management</h3>
+            <h3 class="text-themecolor">{{ __('lang.module_management') }}</h3>
         </div>
         <div class="col-md-7 align-self-center">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Dashboard</a></li>
-                <li class="breadcrumb-item active">Modules</li>
+                <li class="breadcrumb-item"><a href="{{url('/dashboard')}}">{{ __('lang.dashboard') }}</a></li>
+                <li class="breadcrumb-item active">{{ __('lang.modules') }}</li>
             </ol>
         </div>
     </div>
@@ -17,10 +16,21 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-12">
-                <div class="card">
+                <div class="d-flex top-title-section pb-4 justify-content-between">
+                    <div class="d-flex top-title-left align-self-center">
+                        <span class="icon mr-3"><img src="{{ asset('images/module.png') }}"></span>
+                        <h3 class="mb-0">{{ __('lang.module_management') }}</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <div class="card border">
                     <div class="card-body">
-                        <h4 class="card-title">System Modules</h4>
-                        <p class="card-subtitle">Enable or disable modules to control which features are available in your application.</p>
+                        <h4 class="card-title">{{ __('lang.system_modules') }}</h4>
+                        <p class="card-subtitle mb-4">{{ __('lang.module_description') }}</p>
 
                         <div id="modules-alert"></div>
 
@@ -28,16 +38,16 @@
                             <table class="table table-hover table-striped table-bordered">
                                 <thead>
                                     <tr>
-                                        <th>Module Name</th>
-                                        <th>Status</th>
-                                        <th>Last Updated</th>
+                                        <th>{{ __('lang.module_name') }}</th>
+                                        <th>{{ __('lang.status') }}</th>
+                                        <th>{{ __('lang.description') }}</th>
                                     </tr>
                                 </thead>
                                 <tbody id="modules-list">
                                     <tr>
-                                        <td colspan="3" class="text-center">
-                                            <div class="spinner-border" role="status">
-                                                <span class="sr-only">Loading...</span>
+                                        <td colspan="3" class="text-center py-4">
+                                            <div class="spinner-border text-primary" role="status">
+                                                <span class="sr-only">{{ __('lang.loading') }}...</span>
                                             </div>
                                         </td>
                                     </tr>
@@ -65,9 +75,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             })
             .catch(error => {
-                console.error('Error loading modules:', error);
-                document.getElementById('modules-list').innerHTML = 
-                    '<tr><td colspan="3" class="text-center text-danger">Error loading modules</td></tr>';
+                console.error('Error loading modules document.getElementBy:', error);
+               Id('modules-list').innerHTML = 
+                    '<tr><td colspan="3" class="text-center text-danger">{{ __("lang.error_loading") }}</td></tr>';
             });
     }
 
@@ -75,12 +85,12 @@ document.addEventListener('DOMContentLoaded', function() {
         const tbody = document.getElementById('modules-list');
         
         if (modules.length === 0) {
-            tbody.innerHTML = '<tr><td colspan="3" class="text-center">No modules found</td></tr>';
+            tbody.innerHTML = '<tr><td colspan="3" class="text-center">{{ __("lang.no_modules") }}</td></tr>';
             return;
         }
 
-        tbody.innerHTML = modules.map(module => `
-            <tr>
+        tbody.innerHTML = modules.map((module, index) => `
+            <tr class="animate__animated animate__fadeIn" style="animation-delay: ${index * 0.1}s">
                 <td>
                     <strong>${module.name}</strong>
                 </td>
@@ -91,17 +101,16 @@ document.addEventListener('DOMContentLoaded', function() {
                             ${module.enabled ? 'checked' : ''}>
                         <span class="slider round"></span>
                     </label>
-                    <span class="ml-2 ${module.enabled ? 'text-success' : 'text-secondary'}">
-                        ${module.enabled ? 'Enabled' : 'Disabled'}
+                    <span class="ml-2 ${module.enabled ? 'text-success' : 'text-secondary'} font-weight-bold">
+                        ${module.enabled ? '{{ __("lang.enabled") }}' : '{{ __("lang.disabled") }}'}
                     </span>
                 </td>
                 <td>
-                    <small class="text-muted">Click toggle to change status</small>
+                    <small class="text-muted">{{ __('lang.click_toggle') }}</small>
                 </td>
             </tr>
         `).join('');
 
-        // Add event listeners to toggles
         document.querySelectorAll('.module-toggle').forEach(toggle => {
             toggle.addEventListener('change', function() {
                 const module = this.dataset.module;
@@ -113,7 +122,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function toggleModule(module, status) {
         const alertDiv = document.getElementById('modules-alert');
-        alertDiv.innerHTML = '<div class="alert alert-info">Updating module status...</div>';
+        alertDiv.innerHTML = '<div class="alert alert-info">{{ __("lang.updating") }}...</div>';
 
         fetch('{{ route("admin.modules.toggle") }}', {
             method: 'POST',
@@ -129,18 +138,16 @@ document.addEventListener('DOMContentLoaded', function() {
         .then(response => response.json())
         .then(data => {
             if (data.success) {
-                alertDiv.innerHTML = `<div class="alert alert-success alert-dismissible fade show">
+                alertDiv.innerHTML = `<div class="alert alert-success alert-dismissible fade show" role="alert">
                     ${data.message}
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>`;
-                
-                // Update the status text
                 loadModules();
             } else {
-                alertDiv.innerHTML = `<div class="alert alert-danger alert-dismissible fade show">
-                    Error: ${data.message || 'Failed to update module'}
+                alertDiv.innerHTML = `<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    ${data.message || '{{ __("lang.error_update") }}'}
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -150,7 +157,7 @@ document.addEventListener('DOMContentLoaded', function() {
         })
         .catch(error => {
             console.error('Error:', error);
-            alertDiv.innerHTML = '<div class="alert alert-danger">An error occurred while updating the module.</div>';
+            alertDiv.innerHTML = '<div class="alert alert-danger">{{ __("lang.error_occurred") }}</div>';
             loadModules();
         });
     }
@@ -164,54 +171,29 @@ document.addEventListener('DOMContentLoaded', function() {
     width: 50px;
     height: 24px;
 }
-
-.switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-}
-
+.switch input { opacity: 0; width: 0; height: 0; }
 .slider {
     position: absolute;
     cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    top: 0; left: 0; right: 0; bottom: 0;
     background-color: #ccc;
     transition: .4s;
+    border-radius: 24px;
 }
-
 .slider:before {
     position: absolute;
     content: "";
-    height: 16px;
-    width: 16px;
-    left: 4px;
-    bottom: 4px;
+    height: 18px;
+    width: 18px;
+    left: 3px;
+    bottom: 3px;
     background-color: white;
     transition: .4s;
-}
-
-input:checked + .slider {
-    background-color: #2196F3;
-}
-
-input:focus + .slider {
-    box-shadow: 0 0 1px #2196F3;
-}
-
-input:checked + .slider:before {
-    transform: translateX(26px);
-}
-
-.slider.round {
-    border-radius: 34px;
-}
-
-.slider.round:before {
     border-radius: 50%;
 }
+input:checked + .slider { background-color: #2196F3; }
+input:focus + .slider { box-shadow: 0 0 1px #2196F3; }
+input:checked + .slider:before { transform: translateX(26px); }
 </style>
 @endpush
 @endsection
